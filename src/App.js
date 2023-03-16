@@ -1,7 +1,8 @@
+import ScreenOne from "./components/Screen_1/ScreenOne";
 
 function App() {
   return (
-    <h1>ola</h1>
+    <ScreenOne/>
   );
 }
 
