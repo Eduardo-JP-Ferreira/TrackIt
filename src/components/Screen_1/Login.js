@@ -1,5 +1,12 @@
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom"
+
 export default function Login(){
+    const navigate = useNavigate();
+
+    function cadastrar(){
+        navigate('/cadastro')
+    }
     return(
         <ContainerTela>
             <Logo>
@@ -10,7 +17,7 @@ export default function Login(){
                 <input type="senha" required placeholder="senha"/>
                 <button type="submit">Entrar</button>
             </Formulario>
-            <Cadastro>
+            <Cadastro onClick={cadastrar}>
                 <p>Não tem uma conta? Cadastre-se!</p>
             </Cadastro>
         </ContainerTela>
@@ -82,4 +89,9 @@ font-size: 14px;
 font-weight: 400;
 line-height: 18px;
 font-family: 'Lexend Deca', sans-serif;
+    p{
+        :hover{
+            cursor: pointer;
+        }
+    }
 `
