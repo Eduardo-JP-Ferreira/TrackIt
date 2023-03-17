@@ -1,20 +1,25 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 
-export default function Login(){
+export default function Login({emailLogin, setEmailLogin, senhaLogin, setSenhaLogin}){
     const navigate = useNavigate();
-
+    // console.log("Email e Senha:",emailLogin, senhaLogin)
     function cadastrar(){
         navigate('/cadastro')
+    }
+
+    function executarLogin(){
+        console.log("Entrar: ",emailLogin, senhaLogin)
+        alert("olhar console")
     }
     return(
         <ContainerTela>
             <Logo>
                 <img src="assets/logo-completa.svg"></img>
             </Logo>
-            <Formulario>
-                <input type="email" required placeholder="email"/>
-                <input type="senha" required placeholder="senha"/>
+            <Formulario onSubmit={executarLogin}>
+                <input type="email" required value={emailLogin} onChange={e => setEmailLogin(e.target.value)} placeholder="email"/>
+                <input type="senha" required value={senhaLogin} onChange={e => setSenhaLogin(e.target.value)} placeholder="senha"/>
                 <button type="submit">Entrar</button>
             </Formulario>
             <Cadastro onClick={cadastrar}>

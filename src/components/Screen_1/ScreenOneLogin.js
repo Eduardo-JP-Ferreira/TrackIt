@@ -3,7 +3,7 @@ import Login from "./Login"
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
-export default function ScreenOneLogin(){
+export default function ScreenOneLogin({emailLogin, setEmailLogin, senhaLogin, setSenhaLogin}){
     
     return(
         // <BrowserRouter>
@@ -13,7 +13,9 @@ export default function ScreenOneLogin(){
 		// 		{/* <Route path="/contato" element={<Contato />}/> */}
 		// 	</Routes>
         // </BrowserRouter>
-        <Login/>
+        <Login emailLogin={emailLogin} setEmailLogin={setEmailLogin}
+        senhaLogin={senhaLogin} setSenhaLogin={setSenhaLogin}
+        />
         
     )
 }

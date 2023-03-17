@@ -1,22 +1,28 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 
-export default function SignUp(){
+export default function SignUp({
+    emailCadastro, setEmailCadastro, senhaCadastro, setSenhaCadastro,
+    nomeCadastro, setNomeCadastro, fotoCadastro, setFotoCadastro}){
     const navigate = useNavigate()
 
     function login(){
         navigate(-1)
+    }
+    function executarCadastro(){
+        console.log("Cadastrei", emailCadastro, senhaCadastro, nomeCadastro, fotoCadastro)
+        alert("Verifica Console")
     }
     return(
         <ContainerTela>
             <Logo>
                 <img src="assets/logo-completa.svg"></img>
             </Logo>
-            <Formulario>
-                <input type="email" required placeholder="email"/>
-                <input type="senha" required placeholder="senha"/>
-                <input type="nome" required placeholder="nome"/>
-                <input type="foto" required placeholder="foto"/>
+            <Formulario onSubmit={executarCadastro}>
+                <input type="email" required value={emailCadastro} onChange={e => setEmailCadastro(e.target.value)} placeholder="email"/>
+                <input type="senha" required value={senhaCadastro} onChange={e => setSenhaCadastro(e.target.value)} placeholder="senha"/>
+                <input type="nome" required value={nomeCadastro} onChange={e => setNomeCadastro(e.target.value)} placeholder="nome"/>
+                <input type="foto" required value={fotoCadastro} onChange={e => setFotoCadastro(e.target.value)} placeholder="foto"/>
                 <button type="submit">Entrar</button>
             </Formulario>
             <Cadastro onClick={login}>
