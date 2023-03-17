@@ -1,16 +1,27 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
+import axios from "axios";
 
 export default function Login({emailLogin, setEmailLogin, senhaLogin, setSenhaLogin}){
     const navigate = useNavigate();
     // console.log("Email e Senha:",emailLogin, senhaLogin)
+    const objetoLogin = {email: {emailLogin}, password: {senhaLogin}}
+
     function cadastrar(){
         navigate('/cadastro')
     }
 
     function executarLogin(){
         console.log("Entrar: ",emailLogin, senhaLogin)
-        alert("olhar console")
+        // alert("olhar console")
+        const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", objetoLogin)
+        requisicao.then(resposta => {
+            console.log(resposta.data)
+            navigate('/hoje')
+        } )
+        requisicao.catch(resposta => {
+            alert(resposta.response.data)
+        })
     }
     return(
         <ContainerTela>

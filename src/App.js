@@ -1,6 +1,7 @@
 // import {  Routes, Route } from "react-router";
 import ScreenOneLogin from "./components/Screen_1/ScreenOneLogin";
 import ScreenOneSignUp from "./components/Screen_1/ScreenOneSignUp";
+import Today from "./components/Screen_1/Today";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -27,6 +28,8 @@ function App() {
         senhaCadastro={senhaCadastro} setSenhaCadastro={setSenhaCadastro}
         nomeCadastro={nomeCadastro} setNomeCadastro={setNomeCadastro}
         fotoCadastro={fotoCadastro} setFotoCadastro={setFotoCadastro}
+        />} />
+        <Route path="/hoje" element={ <Today 
         />} />
 			</Routes>
     </BrowserRouter>
