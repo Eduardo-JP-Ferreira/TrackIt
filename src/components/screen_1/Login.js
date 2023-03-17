@@ -2,7 +2,10 @@ import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
 
-export default function Login({emailLogin, setEmailLogin, senhaLogin, setSenhaLogin}){
+export default function Login({
+    emailLogin, setEmailLogin, senhaLogin, setSenhaLogin,
+    objetoLoginRecebido, setObjetoLoginRecebido
+}){
     const navigate = useNavigate();
     // console.log("Email e Senha:",emailLogin, senhaLogin)
     const objetoLogin = {email: `${emailLogin}`, password: `${senhaLogin}`}
@@ -17,7 +20,8 @@ export default function Login({emailLogin, setEmailLogin, senhaLogin, setSenhaLo
         // alert("olhar console")
         const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", objetoLogin)
         requisicao.then(resposta => {
-            // console.log(resposta.data)
+            console.log(resposta.data)
+            setObjetoLoginRecebido(resposta.data)
             navigate('/hoje')
         } )
         requisicao.catch(resposta => {
@@ -30,11 +34,11 @@ export default function Login({emailLogin, setEmailLogin, senhaLogin, setSenhaLo
                 <img src="assets/logo-completa.svg"></img>
             </Logo>
             <Formulario onSubmit={executarLogin}>
-                <input type="email" required value={emailLogin} onChange={e => setEmailLogin(e.target.value)} placeholder="email"/>
-                <input type="senha" required value={senhaLogin} onChange={e => setSenhaLogin(e.target.value)} placeholder="senha"/>
-                <button type="submit">Entrar</button>
+                <input data-test="email-input" type="email" required value={emailLogin} onChange={e => setEmailLogin(e.target.value)} placeholder="email"/>
+                <input data-test="password-input" type="senha" required value={senhaLogin} onChange={e => setSenhaLogin(e.target.value)} placeholder="senha"/>
+                <button data-test="login-btn" type="submit">Entrar</button>
             </Formulario>
-            <Cadastro onClick={cadastrar}>
+            <Cadastro data-test="signup-link" onClick={cadastrar}>
                 <p>Não tem uma conta? Cadastre-se!</p>
             </Cadastro>
         </ContainerTela>

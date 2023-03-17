@@ -31,13 +31,13 @@ export default function SignUp({
                 <img src="assets/logo-completa.svg"></img>
             </Logo>
             <Formulario onSubmit={executarCadastro}>
-                <input type="email" required value={emailCadastro} onChange={e => setEmailCadastro(e.target.value)} placeholder="email"/>
-                <input type="senha" required value={senhaCadastro} onChange={e => setSenhaCadastro(e.target.value)} placeholder="senha"/>
-                <input type="nome" required value={nomeCadastro} onChange={e => setNomeCadastro(e.target.value)} placeholder="nome"/>
-                <input type="foto" required value={fotoCadastro} onChange={e => setFotoCadastro(e.target.value)} placeholder="foto"/>
-                <button type="submit">Entrar</button>
+                <input data-test="email-input" type="email" required value={emailCadastro} onChange={e => setEmailCadastro(e.target.value)} placeholder="email"/>
+                <input data-test="password-input" type="senha" required value={senhaCadastro} onChange={e => setSenhaCadastro(e.target.value)} placeholder="senha"/>
+                <input data-test="user-name-input" type="nome" required value={nomeCadastro} onChange={e => setNomeCadastro(e.target.value)} placeholder="nome"/>
+                <input data-test="user-image-input" type="foto" required value={fotoCadastro} onChange={e => setFotoCadastro(e.target.value)} placeholder="foto"/>
+                <button data-test="signup-btn" type="submit">Cadastrar</button>
             </Formulario>
-            <Cadastro onClick={login}>
+            <Cadastro data-test="login-link" onClick={login}>
                 <p>Já tem uma conta? Faça login!</p>
             </Cadastro>
         </ContainerTela>
