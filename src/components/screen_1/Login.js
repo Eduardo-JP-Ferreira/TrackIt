@@ -116,7 +116,7 @@ font-size: 18px;
         font-size: 20px;
         font-weight: 400;
         line-height: 25px;
-        color: #DBDBDB;
+        /* color: #DBDBDB; */
         font-family: 'Lexend Deca', sans-serif;
         :disabled{
             background-color: #F2F2F2;

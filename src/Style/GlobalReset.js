@@ -26,11 +26,15 @@ const GlobalReset = createGlobalStyle`
 	footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
+	*{
+		box-sizing: border-box;
+	}
 	body {
 		line-height: 1;
 		display: flex;
 		justify-content: center;
-		background-color: #E5E5E5;;
+		background-color: #E5E5E5;
+		
 	}
 	ol, ul {
 		list-style: none;
@@ -47,6 +51,7 @@ const GlobalReset = createGlobalStyle`
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+	
 `
 
 export default GlobalReset
