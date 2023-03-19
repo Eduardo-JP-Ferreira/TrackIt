@@ -8,13 +8,7 @@ export default function ScreenOneSignUp({
     nomeCadastro, setNomeCadastro, fotoCadastro, setFotoCadastro}){
     
     return(
-        // <BrowserRouter>
-		// 	<Routes>
-		// 		<Route path="/" element={ <Login />} />
-        //         <Route path="/cadastro" element={ <SignUp />} />
-		// 		{/* <Route path="/contato" element={<Contato />}/> */}
-		// 	</Routes>
-        // </BrowserRouter>
+        
         <SignUp 
         emailCadastro={emailCadastro} setEmailCadastro={setEmailCadastro} 
         senhaCadastro={senhaCadastro} setSenhaCadastro={setSenhaCadastro}

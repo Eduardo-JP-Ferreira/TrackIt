@@ -1,11 +1,15 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
+import UserContext from "../../context/UserContext";
+import { useContext } from "react";
 
 export default function Login({
     emailLogin, setEmailLogin, senhaLogin, setSenhaLogin,
-    objetoLoginRecebido, setObjetoLoginRecebido
 }){
+    const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
+    // const {nome, numero} = useContext(UserContext)
+    // console.log(nome, numero)
     const navigate = useNavigate();
     // console.log("Email e Senha:",emailLogin, senhaLogin)
     const objetoLogin = {email: `${emailLogin}`, password: `${senhaLogin}`}

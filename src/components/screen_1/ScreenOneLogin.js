@@ -9,13 +9,7 @@ export default function ScreenOneLogin({
 }){
     
     return(
-        // <BrowserRouter>
-		// 	<Routes>
-		// 		<Route path="/" element={ <Login />} />
-        //         <Route path="/cadastro" element={ <SignUp />} />
-		// 		{/* <Route path="/contato" element={<Contato />}/> */}
-		// 	</Routes>
-        // </BrowserRouter>
+        
         <Login emailLogin={emailLogin} setEmailLogin={setEmailLogin}
         senhaLogin={senhaLogin} setSenhaLogin={setSenhaLogin}
         objetoLoginRecebido={objetoLoginRecebido} setObjetoLoginRecebido={setObjetoLoginRecebido}
