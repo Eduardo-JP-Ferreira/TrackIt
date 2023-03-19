@@ -47,6 +47,5 @@ margin-right: 18px;
         width: 51px;
         height: 51px;
         border-radius: 50%;
-        cursor: pointer;
     }
 `
