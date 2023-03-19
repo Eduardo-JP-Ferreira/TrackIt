@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios";
 import UserContext from "../../context/UserContext";
 import { useContext } from "react";
@@ -14,9 +14,9 @@ export default function Login({
     // console.log("Email e Senha:",emailLogin, senhaLogin)
     const objetoLogin = {email: `${emailLogin}`, password: `${senhaLogin}`}
 
-    function cadastrar(){
-        navigate('/cadastro')
-    }
+    // function cadastrar(){
+    //     navigate('/cadastro')
+    // }
 
     function executarLogin(event){
         event.preventDefault();
@@ -42,9 +42,11 @@ export default function Login({
                 <input data-test="password-input" type="senha" required value={senhaLogin} onChange={e => setSenhaLogin(e.target.value)} placeholder="senha"/>
                 <button data-test="login-btn" type="submit">Entrar</button>
             </Formulario>
-            <Cadastro data-test="signup-link" onClick={cadastrar}>
-                <p>Não tem uma conta? Cadastre-se!</p>
-            </Cadastro>
+            <Link to={`/cadastro`}>
+                <Cadastro data-test="signup-link" >
+                    <p>Não tem uma conta? Cadastre-se!</p>
+                </Cadastro>
+            </Link>
         </ContainerTela>
     )
 }
