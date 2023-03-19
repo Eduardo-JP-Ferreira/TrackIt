@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { ThreeDots  } from  'react-loader-spinner'
 export default function History() {
 
     
@@ -10,6 +11,17 @@ export default function History() {
             <Conteudo>
                 <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
             </Conteudo>
+
+            {/* <ThreeDots 
+                height="80" 
+                width="80" 
+                radius="9"
+                color="#4fa94d" 
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClassName=""
+                visible={true}
+            /> */}
         </ContainerHistory>
     )
 }

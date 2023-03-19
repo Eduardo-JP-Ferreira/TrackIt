@@ -2,24 +2,21 @@ import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios";
 import UserContext from "../../context/UserContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { ThreeDots  } from  'react-loader-spinner'
 
 export default function Login({
     emailLogin, setEmailLogin, senhaLogin, setSenhaLogin,
 }){
     const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
-    // const {nome, numero} = useContext(UserContext)
-    // console.log(nome, numero)
     const navigate = useNavigate();
-    // console.log("Email e Senha:",emailLogin, senhaLogin)
     const objetoLogin = {email: `${emailLogin}`, password: `${senhaLogin}`}
+    const [habilitarLogin, setHabilitarLogin] = useState(false)
 
-    // function cadastrar(){
-    //     navigate('/cadastro')
-    // }
 
     function executarLogin(event){
         event.preventDefault();
+        setHabilitarLogin(true)
         console.log("Entrar: ",emailLogin, senhaLogin)
         // alert("olhar console")
         const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", objetoLogin)
@@ -27,24 +24,37 @@ export default function Login({
             console.log(resposta.data)
             setObjetoLoginRecebido(resposta.data)
             navigate('/hoje')
+            setHabilitarLogin(false)
         } )
         requisicao.catch(resposta => {
             alert(resposta.response.data.message)
+            setHabilitarLogin(false)
         })
     }
     return(
-        <ContainerTela>
+        <ContainerTela clique = {habilitarLogin}>
             <Logo>
                 <img src="assets/logo-completa.svg"></img>
             </Logo>
-            <Formulario onSubmit={executarLogin}>
-                <input data-test="email-input" type="email" required value={emailLogin} onChange={e => setEmailLogin(e.target.value)} placeholder="email"/>
-                <input data-test="password-input" type="senha" required value={senhaLogin} onChange={e => setSenhaLogin(e.target.value)} placeholder="senha"/>
-                <button data-test="login-btn" type="submit">Entrar</button>
+            <Formulario onSubmit={executarLogin} >
+                <input disabled={habilitarLogin} data-test="email-input" type="email" required value={emailLogin} onChange={e => setEmailLogin(e.target.value)} placeholder="email"/>
+                <input disabled={habilitarLogin} data-test="password-input" type="senha" required value={senhaLogin} onChange={e => setSenhaLogin(e.target.value)} placeholder="senha"/>
+                <button disabled={habilitarLogin} data-test="login-btn" type="submit">{habilitarLogin===true ?   
+                <ThreeDots 
+                    height="13" 
+                    width="45" 
+                    radius="3"
+                    color="white" 
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                /> 
+            : "Entrar"}</button>
             </Formulario>
             <Link to={`/cadastro`}>
                 <Cadastro data-test="signup-link" >
-                    <p>Não tem uma conta? Cadastre-se!</p>
+                    <p >Não tem uma conta? Cadastre-se!</p>
                 </Cadastro>
             </Link>
         </ContainerTela>
@@ -59,6 +69,8 @@ display: flex;
 flex-direction: column;
 align-items: center;
 font-family: 'Lexend Deca', sans-serif;
+pointer-events: ${props => props.clique === true ? "none" : "all"};
+
 `
 const Logo = styled.div`
 margin-top: 68px;
@@ -89,6 +101,10 @@ font-size: 18px;
         font-weight: 400;
         line-height: 26px;
         font-family: 'Lexend Deca', sans-serif;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
        
     }
     input {
@@ -102,12 +118,15 @@ font-size: 18px;
         line-height: 25px;
         color: #DBDBDB;
         font-family: 'Lexend Deca', sans-serif;
-
+        :disabled{
+            background-color: #F2F2F2;
+        }
         ::placeholder{
         color: #DBDBDB;
         padding: 10px;
     }
     }
+
 `
 const Cadastro = styled.div`
 color: #52B6FF;
@@ -116,7 +135,10 @@ font-size: 14px;
 font-weight: 400;
 line-height: 18px;
 font-family: 'Lexend Deca', sans-serif;
+/* pointer-events: none; */
     p{
+        pointer-events: none;
+        /* pointer-events: ${props => props.clique === true ? "all" : "none"}; */
         :hover{
             cursor: pointer;
         }
