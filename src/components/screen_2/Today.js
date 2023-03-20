@@ -184,7 +184,7 @@ export default function Today(){
                 <h1 data-test="today">{`${diaSemana}, ${dia}/${mesCorrigido}`}</h1>
             </NomePagina>
             <Subtitulo>
-            {porcentagem!== 0 ?
+            {porcentagem > 0 ?
                 <h2 data-test="today-counter">{porcentagem.toFixed()}% dos hábitos concluídos</h2>
             :   <h1 data-test="today-counter">Nenhum hábito concluído ainda</h1>
             }
