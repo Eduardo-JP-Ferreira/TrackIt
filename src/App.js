@@ -11,6 +11,7 @@ import { useState } from "react";
 
 
 import UserContext from "./context/UserContext";
+import Porcentagem from "./context/Porcentagem";
 
 function App() {
   const [emailLogin, setEmailLogin] = useState("")
@@ -20,12 +21,13 @@ function App() {
   const [nomeCadastro, setNomeCadastro] = useState("")
   const [fotoCadastro, setFotoCadastro] = useState("")
   const [objetoLoginRecebido, setObjetoLoginRecebido] = useState(undefined)
-
+  const [porcentagem, setPorcentagem] = useState(0)
 
   return (
 
     <BrowserRouter>
     <UserContext.Provider value={{objetoLoginRecebido, setObjetoLoginRecebido}}>
+    <Porcentagem.Provider value={{porcentagem, setPorcentagem}}>
 			<Routes>
         
         <Route path="/" element={ <ScreenOneLogin 
@@ -42,6 +44,7 @@ function App() {
         <Route path="/habitos" element={ <ScreenTwoRoutine/>} />
         <Route path="/historico" element={ <ScreenTwoHistory/>} />
 			</Routes>
+      </Porcentagem.Provider>
       </UserContext.Provider>
     </BrowserRouter>
   );

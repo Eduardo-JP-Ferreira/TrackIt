@@ -1,12 +1,17 @@
 import styled from "styled-components"
 import UserContext from "../../context/UserContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
-
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import Porcentagem from "../../context/Porcentagem";
 export default function Menu() {
+    // const porcentagem = 30;
+
     const navigate = useNavigate()
     const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
-
+    const {porcentagem, setPorcentagem} = useContext(Porcentagem)
+    // const [porcentagem, setPorcentagem] = useState(0)
     function goHabitos(){
         navigate('/habitos')
     }
@@ -20,13 +25,25 @@ export default function Menu() {
     }
     return (
         <ContainerMenu data-test="menu">
+            
             <Base>
                 <h1 data-test="habit-link" onClick={goHabitos}>Hábitos</h1>
                 <h2 data-test="history-link" onClick={goHistorico}>Histórico</h2>
             </Base>
             <Hoje>
-                <BotaoHoje data-test="today-link" onClick={goHoje}>Hoje</BotaoHoje>
+            <Porcento>
+                {console.log("por", porcentagem)}
+                <CircularProgressbar value={porcentagem}
+                styles={buildStyles({
+                    trailColor: '#52B6FF',
+                    pathColor: 'white'
+                })}
+                
+                />;
+            </Porcento>
+                <BotaoHoje data-test="today-link" onClick={goHoje}>Hoje</BotaoHoje>  
             </Hoje>
+            
         </ContainerMenu>
     )
 }
@@ -67,7 +84,18 @@ color: #52B6FF;
     }
 `
 const Hoje = styled.div`
-    z-index: 3
+width: 91px;
+height: 91px;
+z-index: 3;
+position: relative;
+`
+const Porcento = styled.div`
+width: 80px;
+height: 90px;
+z-index: 4;
+position: absolute;
+top: 6px;
+right: 5px;
 `
 const BotaoHoje = styled.button`
 border: none;
