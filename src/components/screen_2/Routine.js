@@ -118,7 +118,7 @@ export default function Routine() {
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
                 </Dias>
                 <Envio >
-                    <Cancelar clique={desabilitar} data-test="habit-create-cancel-btn" onClick={fecharForm}>Cancelar</Cancelar>
+                    <Cancelar disabled={desabilitar} data-test="habit-create-cancel-btn" onClick={fecharForm}>Cancelar</Cancelar>
                     <Salvar disabled={desabilitar} data-test="habit-create-save-btn" type="submit" >{desabilitar===true ?   
                 <ThreeDots 
                     height="11" 
@@ -284,8 +284,22 @@ bottom: 15px;
         cursor: pointer;
     }
 `
-const Cancelar = styled.p`
-pointer-events: ${props => props.clique === true ? "none" : "all"};
+const Cancelar = styled.button`
+/* pointer-events: ${props => props.clique === true ? "none" : "all"};
+cursor: pointer; */
+width: 84px;
+height: 35px;
+background-color: white;
+border-radius: 5px;
+border: none;
+color: #52B6FF;
+font-family: 'Lexend Deca', sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
 cursor: pointer;
 `
 const Salvar= styled.button`
