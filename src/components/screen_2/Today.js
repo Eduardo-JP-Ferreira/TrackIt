@@ -12,6 +12,7 @@ export default function Today(){
     const [mes, setMes] = useState(dayjs().month().toString())
     const [diaSemana, setDiaSemana] = useState("")
     const [mesCorrigido, setMesCorrigido] = useState("")
+    let body
     // const mesCorreto = mes+
     const config = {
         headers: {Authorization: `Bearer ${objetoLoginRecebido.token}`}
@@ -96,40 +97,59 @@ export default function Today(){
             console.log(resposta.data)
             setArrayToday(resposta.data)
             
-        });
+        })
+        requisicao.catch(erro => {
+            alert(erro.response.data.message)
+        })
     }, []);
-
-    // function inicio(){
-    //     switch(Number(data)){
-    //         case 0:
-    //             setDiaSemana("Domingo")
-    //             break;
-    //         case 1:
-    //             setDiaSemana("Segunda")
-    //             break;
-    //         case 2:
-    //             setDiaSemana("Terça")
-    //             break;  
-    //         case 3:
-    //             setDiaSemana("Quarta")
-    //             break;
-    //         case 4:
-    //             setDiaSemana("Quinta")
-    //             break;
-    //         case 5:
-    //             setDiaSemana("Sexta")
-    //             break;
-    //         case 6:
-    //             setDiaSemana("Sabado")
-    //             break;   
-    //         default:
-    //             break;   
-    //     }
-    // }
     
-    function teste(){
-        console.log(arrayToday)
+    function verificaCheck(id, feito){
+
+        if(feito===false){
+            const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`, [],config)
+
+            requisicao.then(resposta => {
+                // console.log(resposta.data)
+                const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, config)
+    
+                requisicao.then(resposta => {
+                    console.log(resposta.data)
+                    setArrayToday(resposta.data)
+                    
+                })
+                requisicao.catch(erro => {
+                    alert(erro.response.data.message)
+                })
+                
+            })
+            requisicao.catch(erro => {
+                alert(erro.response.data.message)
+            })
+        }
+
+        else{
+            const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`, [],config)
+
+            requisicao.then(resposta => {
+                // console.log(resposta.data)
+                const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, config)
+    
+                requisicao.then(resposta => {
+                    console.log(resposta.data)
+                    setArrayToday(resposta.data)
+                    
+                })
+                requisicao.catch(erro => {
+                    alert(erro.response.data.message)
+                })
+                
+            })
+            requisicao.catch(erro => {
+                alert(erro.response.data.message)
+            })
+        }
     }
+
     return(
         ////
         <ContainerToday>
@@ -153,7 +173,7 @@ export default function Today(){
                                 <p data-test="today-habit-record">Seu recorde: {item.highestSequence} dias</p>
                             </Sequencia>
                         </Caixa>
-                        <Check data-test="today-habit-check-btn"><ion-icon name="checkmark-sharp"></ion-icon></Check>
+                        <Check feito={item.done} onClick={()=> verificaCheck(item.id, item.done)} data-test="today-habit-check-btn"><ion-icon name="checkmark-sharp"></ion-icon></Check>
                     </ContainerHoje>
                 )}
             </Conteudo>
@@ -253,18 +273,18 @@ margin-top: 7px;
     }
 `
 
-const Check = styled.div`
+const Check = styled.button`
+border: none;
+border-radius: 5px;
 width: 69px;
 height: 69px;
 margin-top: 13px;
 margin-right: 13px;
-background-color: #EBEBEB;
+background-color: ${props=> props.feito===true ? "#8FC549;" : "#EBEBEB;"};
 display: flex;
 justify-content: center;
 align-items: center;
     ion-icon{
-        border-radius: 5px;
-        padding: none;
         width: 70%;
         height: 80%;
         color: white
