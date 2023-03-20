@@ -113,6 +113,12 @@ export default function Routine() {
         })
     }, []);
    
+    function testaInput(){
+        if(nomeHabito===""){
+            alert("Preencha o Campo 'nome do hábito' ")
+        }
+    }
+
     return (
         <ContainerRoutine>
             <NomePagina>
@@ -148,7 +154,7 @@ export default function Routine() {
                 </Dias>
                 <Envio >
                     <Cancelar disabled={desabilitar} data-test="habit-create-cancel-btn" onClick={fecharForm}>Cancelar</Cancelar>
-                    <Salvar disabled={desabilitar} data-test="habit-create-save-btn" type="submit" >{desabilitar===true ?   
+                    <Salvar disabled={desabilitar} data-test="habit-create-save-btn" type="submit" onClick={testaInput}>{desabilitar===true ?   
                 <ThreeDots 
                     height="11" 
                     width="40" 
