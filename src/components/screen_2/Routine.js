@@ -62,34 +62,34 @@ export default function Routine() {
             </NomePagina>
             {formAtivo === true ? 
 
-            <Formulario onSubmit={enviarForm}>
-                <FormNome type="nome" required value={nomeHabito} onChange={e => setNomeHabito(e.target.value)} placeholder="nome do hábito"/>
+            <Formulario data-test="habit-create-container" onSubmit={enviarForm}>
+                <FormNome data-test="habit-name-input"  type="name" required value={nomeHabito} onChange={e => setNomeHabito(e.target.value)} placeholder="nome do hábito"/>
                 <Dias>
-                    <FormDia value="1" 
+                    <FormDia data-test="habit-day" value="1" 
                         cor={days.includes("1") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>D</FormDia>
-                    <FormDia value="2" 
+                    <FormDia data-test="habit-day" value="2" 
                         cor={days.includes("2") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
-                    <FormDia value="3" 
+                    <FormDia data-test="habit-day" value="3" 
                         cor={days.includes("3") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>T</FormDia>
-                    <FormDia value="4" 
+                    <FormDia data-test="habit-day" value="4" 
                         cor={days.includes("4") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>Q</FormDia>
-                    <FormDia value="5" 
+                    <FormDia data-test="habit-day" value="5" 
                         cor={days.includes("5") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>Q</FormDia>
-                    <FormDia value="6" 
+                    <FormDia data-test="habit-day" value="6" 
                         cor={days.includes("6") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
-                    <FormDia value="7" 
+                    <FormDia data-test="habit-day" value="7" 
                         cor={days.includes("7") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
                 </Dias>
                 <Envio>
-                    <p onClick={fecharForm}>Cancelar</p>
-                    <Salvar type="submit" >Salvar</Salvar>
+                    <p data-test="habit-create-cancel-btn" onClick={fecharForm}>Cancelar</p>
+                    <Salvar data-test="habit-create-save-btn" type="submit" >Salvar</Salvar>
                 </Envio>
             </Formulario>
             
