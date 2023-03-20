@@ -68,7 +68,7 @@ export default function Routine() {
         }
     }
     return (
-        <ContainerRoutine clique={desabilitar}>
+        <ContainerRoutine>
             <NomePagina>
                 <h1>Meus hábitos</h1>
                 <BotaoMais data-test="habit-create-btn" onClick={abrirForm}>+</BotaoMais>
@@ -101,8 +101,8 @@ export default function Routine() {
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
                 </Dias>
                 <Envio >
-                    <p data-test="habit-create-cancel-btn" onClick={fecharForm}>Cancelar</p>
-                    <Salvar data-test="habit-create-save-btn" type="submit" >Salvar</Salvar>
+                    <Cancelar clique={desabilitar} data-test="habit-create-cancel-btn" onClick={fecharForm}>Cancelar</Cancelar>
+                    <Salvar disabled={desabilitar} data-test="habit-create-save-btn" type="submit" >Salvar</Salvar>
                 </Envio>
             </Formulario>
             
@@ -122,7 +122,7 @@ height: 100%;
 display: flex;
 flex-direction: column;
 align-items: center;
-pointer-events: ${props => props.clique === true ? "none" : "all"};
+
 `
 
 const NomePagina = styled.div`
@@ -230,7 +230,10 @@ bottom: 15px;
         cursor: pointer;
     }
 `
-
+const Cancelar = styled.p`
+pointer-events: ${props => props.clique === true ? "none" : "all"};
+cursor: pointer;
+`
 const Salvar= styled.button`
 width: 84px;
 height: 35px;
