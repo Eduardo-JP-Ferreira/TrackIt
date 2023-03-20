@@ -12,17 +12,17 @@ export default function Today(){
     const [mes, setMes] = useState(dayjs().month().toString())
     const [diaSemana, setDiaSemana] = useState("")
     const [mesCorrigido, setMesCorrigido] = useState("")
-    let body
-    // const mesCorreto = mes+
+    const [habilitaPointer, setHabilitaPointer] = useState(true)
+    //let testarRecord =1 //Modifiquei este valor e passei como props no lugar do Seu record 
+    //                          para verificar que fica cinza quando o Record > Atual
+    
     const config = {
         headers: {Authorization: `Bearer ${objetoLoginRecebido.token}`}
     }
         
 
     useEffect(() => {
-        // setData(dayjs().day().toString())
-        // setMes(dayjs().month().toString())
-        // setDia(dayjs().date().toString())
+  
 
         switch(Number(data)){
             case 0:
@@ -104,7 +104,7 @@ export default function Today(){
     }, []);
     
     function verificaCheck(id, feito){
-
+        setHabilitaPointer(false)
         if(feito===false){
             const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`, [],config)
 
@@ -115,15 +115,18 @@ export default function Today(){
                 requisicao.then(resposta => {
                     console.log(resposta.data)
                     setArrayToday(resposta.data)
+                    setHabilitaPointer(true)
                     
                 })
                 requisicao.catch(erro => {
                     alert(erro.response.data.message)
+                    setHabilitaPointer(true)
                 })
                 
             })
             requisicao.catch(erro => {
                 alert(erro.response.data.message)
+                setHabilitaPointer(true)
             })
         }
 
@@ -137,22 +140,25 @@ export default function Today(){
                 requisicao.then(resposta => {
                     console.log(resposta.data)
                     setArrayToday(resposta.data)
+                    setHabilitaPointer(true)
                     
                 })
                 requisicao.catch(erro => {
                     alert(erro.response.data.message)
+                    setHabilitaPointer(true)
                 })
                 
             })
             requisicao.catch(erro => {
                 alert(erro.response.data.message)
+                setHabilitaPointer(true)
             })
         }
     }
 
     return(
-        ////
-        <ContainerToday>
+        
+        <ContainerToday pointer={habilitaPointer}>
             {console.log(data)}
             <NomePagina>
                 <h1 data-test="today">{`${diaSemana}, ${dia}/${mesCorrigido}`}</h1>
@@ -195,6 +201,7 @@ height: 100%;
 display: flex;
 flex-direction: column;
 align-items: center;
+pointer-events: ${props => props.pointer === true ? "all" : "none"};
 `
 const NomePagina = styled.div`
 width: 100%;
