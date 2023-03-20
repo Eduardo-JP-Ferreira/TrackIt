@@ -39,7 +39,7 @@ export default function SignUp({
             </Logo>
             <Formulario onSubmit={executarCadastro}>
                 <input disabled={habilitarCadastro} data-test="email-input" type="email" required value={emailCadastro} onChange={e => setEmailCadastro(e.target.value)} placeholder="email"/>
-                <input disabled={habilitarCadastro}data-test="password-input" type="senha" required value={senhaCadastro} onChange={e => setSenhaCadastro(e.target.value)} placeholder="senha"/>
+                <input disabled={habilitarCadastro}data-test="password-input" type="password" required value={senhaCadastro} onChange={e => setSenhaCadastro(e.target.value)} placeholder="senha"/>
                 <input disabled={habilitarCadastro}data-test="user-name-input" type="nome" required value={nomeCadastro} onChange={e => setNomeCadastro(e.target.value)} placeholder="nome"/>
                 <input disabled={habilitarCadastro}data-test="user-image-input" type="foto" required value={fotoCadastro} onChange={e => setFotoCadastro(e.target.value)} placeholder="foto"/>
                 <button disabled={habilitarCadastro} data-test="signup-btn" type="submit">{habilitarCadastro===true ?   
@@ -114,6 +114,7 @@ font-size: 18px;
         font-size: 20px;
         font-weight: 400;
         line-height: 25px;
+        padding: 10px;
         color: #DBDBDB;
         font-family: 'Lexend Deca', sans-serif;
 

@@ -1,19 +1,59 @@
 import { useState } from "react"
 import styled from "styled-components"
+import UserContext from "../../context/UserContext";
+import { useContext } from "react";
+import axios from "axios";
 
 export default function Routine() {
-
+    const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
     const [formAtivo, setFormAtivo] = useState(false)
     const [nomeHabito, setNomeHabito] = useState("")
     const [diasHabito, setDiasHabito] = useState("")
+    const [days, setDiasClicados] = useState([])
+    const [resposta, setResposta] = useState("")
 
-    function abrirForm(){
+    const config = {
+        headers: {Authorization: `Bearer ${objetoLoginRecebido.token}`}
+    }
+    const bodyPost = {
+        name: `${nomeHabito}`,
+        days
+    }
+    function abrirForm(event){
+        event.preventDefault();
         setFormAtivo(true)
     }
-    function fecharForm(){
+    function fecharForm(event){
+        event.preventDefault();
         setFormAtivo(false)
     }
+    function enviarForm(event){
+        event.preventDefault();
+        console.log(config)
+        console.log(bodyPost)
 
+        const promessa = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", bodyPost, config);
+        promessa.then(res => {
+            setResposta(res.data)
+            alert("foi")
+        })
+        promessa.catch(erro => alert(erro.response.data.message))
+
+    }
+    function cliqueDia(dia){
+        console.log(days)
+        if(days.includes(dia)){
+            console.log("INCLUDES")
+            let indice = days.indexOf(dia)
+
+            days.splice(indice, 1)
+            const novoArray = [...days]
+            setDiasClicados(novoArray)
+        }
+        else{
+            setDiasClicados([...days, dia])
+        }
+    }
     return (
         <ContainerRoutine>
             <NomePagina>
@@ -22,20 +62,34 @@ export default function Routine() {
             </NomePagina>
             {formAtivo === true ? 
 
-            <Formulario>
+            <Formulario onSubmit={enviarForm}>
                 <FormNome type="nome" required value={nomeHabito} onChange={e => setNomeHabito(e.target.value)} placeholder="nome do hábito"/>
                 <Dias>
-                    <FormDia type="dia" required value="1">D</FormDia>
-                    <FormDia type="dia" required value="2">S</FormDia>
-                    <FormDia type="dia" required value="3">T</FormDia>
-                    <FormDia type="dia" required value="4">Q</FormDia>
-                    <FormDia type="dia" required value="5">Q</FormDia>
-                    <FormDia type="dia" required value="6">S</FormDia>
-                    <FormDia type="dia" required value="7">S</FormDia>
+                    <FormDia value="1" 
+                        cor={days.includes("1") ? "#CFCFCF" : "white"}
+                        onClick={e => cliqueDia(e.target.value)}>D</FormDia>
+                    <FormDia value="2" 
+                        cor={days.includes("2") ? "#CFCFCF" : "white"}
+                        onClick={e => cliqueDia(e.target.value)}>S</FormDia>
+                    <FormDia value="3" 
+                        cor={days.includes("3") ? "#CFCFCF" : "white"}
+                        onClick={e => cliqueDia(e.target.value)}>T</FormDia>
+                    <FormDia value="4" 
+                        cor={days.includes("4") ? "#CFCFCF" : "white"}
+                        onClick={e => cliqueDia(e.target.value)}>Q</FormDia>
+                    <FormDia value="5" 
+                        cor={days.includes("5") ? "#CFCFCF" : "white"}
+                        onClick={e => cliqueDia(e.target.value)}>Q</FormDia>
+                    <FormDia value="6" 
+                        cor={days.includes("6") ? "#CFCFCF" : "white"}
+                        onClick={e => cliqueDia(e.target.value)}>S</FormDia>
+                    <FormDia value="7" 
+                        cor={days.includes("7") ? "#CFCFCF" : "white"}
+                        onClick={e => cliqueDia(e.target.value)}>S</FormDia>
                 </Dias>
                 <Envio>
                     <p onClick={fecharForm}>Cancelar</p>
-                    <Salvar type="submit">Salvar</Salvar>
+                    <Salvar type="submit" >Salvar</Salvar>
                 </Envio>
             </Formulario>
             
@@ -117,7 +171,7 @@ font-family: 'Lexend Deca', sans-serif;
 font-weight: 400;
 font-size: 20px;
 line-height: 25px;
-
+padding: 10px;
 
     ::placeholder{
         color: #DBDBDB;
@@ -129,28 +183,30 @@ const Dias = styled.div`
 width: 303px;
 height: 30px;
 margin-top: 8px;
-/* background-color: lightcoral; */
+display: flex;
 `
-const FormDia = styled.button`
+const FormDia = styled.option`
+display: flex;
+justify-content: center;
+align-items: center;
 width: 30px;
 height: 30px;
 margin-right: 4px;
-background-color: white;
+background-color: ${props=> props.cor};
 border: 1px solid #D5D5D5;
 border-radius: 5px;
-color: #DBDBDB;
+color: ${props=> props.cor==="#CFCFCF" ? "white" : "#DBDBDB"};
 cursor: pointer;
-::placeholder{
+/* ::placeholder{
         color: #DBDBDB;
         padding: 2px;
-    }
+    } */
 `
 
 const Envio = styled.div`
 width: 176px;
 display: flex;
 justify-content: space-between;
-/* background-color: lightcyan; */
 align-items: center;
 color: #52B6FF;
 position: absolute;

@@ -38,7 +38,7 @@ export default function Login({
             </Logo>
             <Formulario onSubmit={executarLogin} >
                 <input disabled={habilitarLogin} data-test="email-input" type="email" required value={emailLogin} onChange={e => setEmailLogin(e.target.value)} placeholder="email"/>
-                <input disabled={habilitarLogin} data-test="password-input" type="senha" required value={senhaLogin} onChange={e => setSenhaLogin(e.target.value)} placeholder="senha"/>
+                <input disabled={habilitarLogin} data-test="password-input" type="password" required value={senhaLogin} onChange={e => setSenhaLogin(e.target.value)} placeholder="senha"/>
                 <button disabled={habilitarLogin} data-test="login-btn" type="submit">{habilitarLogin===true ?   
                 <ThreeDots 
                     height="13" 
@@ -116,6 +116,7 @@ font-size: 18px;
         font-size: 20px;
         font-weight: 400;
         line-height: 25px;
+        padding: 10px;
         /* color: #DBDBDB; */
         font-family: 'Lexend Deca', sans-serif;
         :disabled{
