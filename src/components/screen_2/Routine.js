@@ -49,7 +49,13 @@ export default function Routine() {
                 
                 // navigate('/habitos')
                 // const resetaArray = [...arrayHabitos]
-                setArrayHabitos([...arrayHabitos, res.data])
+                // setArrayHabitos([...arrayHabitos, res.data])
+                const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, config)
+
+                requisicao.then(resposta => {
+                    console.log(resposta.data)
+                    setArrayHabitos(resposta.data)
+                });
             })
             promessa.catch(erro => {
                 alert(erro.response.data.message)
@@ -73,6 +79,20 @@ export default function Routine() {
         }
         else{
             setDiasClicados([...days, Number(dia)])
+        }
+    }
+    function deletarHabito(id){
+        if (window.confirm("Delete the item?")) {
+            
+            const promessa = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config)
+            promessa.then(res =>{
+                const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, config)
+
+                requisicao.then(resposta => {
+                    console.log(resposta.data)
+                    setArrayHabitos(resposta.data)
+                });
+            })
         }
     }
     useEffect(() => {
@@ -144,6 +164,7 @@ export default function Routine() {
                             <TituloHabito>
                                 <p data-test="habit-name">{item.name}</p>
                             </TituloHabito>
+                            <Delete data-test="habit-delete-btn" onClick={()=>deletarHabito(item.id)}><ion-icon name="trash-outline"></ion-icon></Delete>
                             <DiasHabito>
                                 <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="7" 
                                     cor={item.days.includes(7) || item.days.includes('7')  ? "#CFCFCF" : "white"}>D</FormDiaHabito>
@@ -326,6 +347,7 @@ background-color: white;
 margin-bottom: 10px;
 display: flex;
 flex-direction: column;
+position: relative;
 `
 const TituloHabito = styled.div`
 width: 100%;
@@ -341,6 +363,14 @@ margin-top: 13px;
         color: #666666;
     }
 
+`
+const Delete = styled.div`
+width: 13px;
+height: 15px;
+position: absolute;
+top: 11px;
+right: 10px;
+z-index: 1;
 `
 const DiasHabito = styled.div`
 display: flex;
