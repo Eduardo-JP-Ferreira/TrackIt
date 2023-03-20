@@ -65,8 +65,7 @@ export default function SignUp({
 const ContainerTela = styled.div`
 background-color: white;
 width: 375px;
-height: 109%;
-min-height: 667px;
+height: 667px;
 display: flex;
 flex-direction: column;
 align-items: center;

@@ -301,7 +301,7 @@ const Recorde= styled.div`
     display: flex;
     
     h1{
-        color: ${props=>  (props.maior >= props.atual && props.maior !=0)  ? "#8FC549" : "#666666"};
+        color: ${props=>  (props.maior === props.atual && props.maior !=0)  ? "#8FC549" : "#666666"};
         margin-left: 4px;
     }
 `

@@ -16,9 +16,9 @@ export default function ScreenTwoHistory(){
   )
 }
 const ContainerScreen2 = styled.div`
-background-color: white;
+background-color: #f2f2f2;
 width: 375px;
-height: 109%;
+max-height: 109%;
 min-height: 667px;
 display: flex;
 flex-direction: column;

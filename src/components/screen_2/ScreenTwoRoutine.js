@@ -16,7 +16,7 @@ export default function ScreenTwoRoutine(){
     )
 }
 const ContainerScreen2 = styled.div`
-background-color: white;
+background-color: #f2f2f2;
 width: 375px;
 max-height: 109px;
 min-height: 667px;
