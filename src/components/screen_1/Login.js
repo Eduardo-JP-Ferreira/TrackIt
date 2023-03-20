@@ -124,7 +124,6 @@ font-size: 18px;
         }
         ::placeholder{
         color: #DBDBDB;
-        padding: 10px;
     }
     }
 

@@ -3,6 +3,8 @@ import styled from "styled-components"
 import UserContext from "../../context/UserContext";
 import { useContext } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
+import { ThreeDots  } from  'react-loader-spinner'
 
 export default function Routine() {
     const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
@@ -13,6 +15,8 @@ export default function Routine() {
     const [resposta, setResposta] = useState("")
     const [desabilitar, setDesabilitar] = useState(false)
     const [arrayHabitos, setArrayHabitos] = useState([])
+
+    const navigate = useNavigate();
 
     const config = {
         headers: {Authorization: `Bearer ${objetoLoginRecebido.token}`}
@@ -42,7 +46,10 @@ export default function Routine() {
                 setFormAtivo(false)
                 setResposta(res.data)
                 setDesabilitar(false)
-                alert("foi")
+                
+                // navigate('/habitos')
+                // const resetaArray = [...arrayHabitos]
+                setArrayHabitos([...arrayHabitos, res.data])
             })
             promessa.catch(erro => {
                 alert(erro.response.data.message)
@@ -76,7 +83,7 @@ export default function Routine() {
             setArrayHabitos(resposta.data)
         });
     }, []);
-
+   
     return (
         <ContainerRoutine>
             <NomePagina>
@@ -112,7 +119,18 @@ export default function Routine() {
                 </Dias>
                 <Envio >
                     <Cancelar clique={desabilitar} data-test="habit-create-cancel-btn" onClick={fecharForm}>Cancelar</Cancelar>
-                    <Salvar disabled={desabilitar} data-test="habit-create-save-btn" type="submit" >Salvar</Salvar>
+                    <Salvar disabled={desabilitar} data-test="habit-create-save-btn" type="submit" >{desabilitar===true ?   
+                <ThreeDots 
+                    height="11" 
+                    width="40" 
+                    radius="3"
+                    color="white" 
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                /> 
+                : "Salvar"}</Salvar>
                 </Envio>
             </Formulario>
             
@@ -128,19 +146,19 @@ export default function Routine() {
                             </TituloHabito>
                             <DiasHabito>
                                 <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="7" 
-                                    cor={item.days.includes(7) ? "#CFCFCF" : "white"}>D</FormDiaHabito>
+                                    cor={item.days.includes(7) || item.days.includes('7')  ? "#CFCFCF" : "white"}>D</FormDiaHabito>
                                 <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="1" 
-                                    cor={item.days.includes(1) ? "#CFCFCF" : "white"}>S</FormDiaHabito>
+                                    cor={item.days.includes(1) || item.days.includes('1') ? "#CFCFCF" : "white"}>S</FormDiaHabito>
                                 <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="2" 
-                                    cor={item.days.includes(2) ? "#CFCFCF" : "white"}>T</FormDiaHabito>
+                                    cor={item.days.includes(2) || item.days.includes('2') ? "#CFCFCF" : "white"}>T</FormDiaHabito>
                                 <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="3" 
-                                    cor={item.days.includes(3) ? "#CFCFCF" : "white"}>Q</FormDiaHabito>
+                                    cor={item.days.includes(3) || item.days.includes('3') ? "#CFCFCF" : "white"}>Q</FormDiaHabito>
                                 <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="4" 
-                                    cor={item.days.includes(4) ? "#CFCFCF" : "white"}>Q</FormDiaHabito>
+                                    cor={item.days.includes(4) || item.days.includes('4') ? "#CFCFCF" : "white"}>Q</FormDiaHabito>
                                 <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="5" 
-                                    cor={item.days.includes(5) ? "#CFCFCF" : "white"}>S</FormDiaHabito>
+                                    cor={item.days.includes(5) || item.days.includes('5') ? "#CFCFCF" : "white"}>S</FormDiaHabito>
                                 <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="6" 
-                                    cor={item.days.includes(6) ? "#CFCFCF" : "white"}>S</FormDiaHabito>
+                                    cor={item.days.includes(6) || item.days.includes('6') ? "#CFCFCF" : "white"}>S</FormDiaHabito>
                             </DiasHabito>
                         </ContainerRoutineFeito>
                     )
@@ -281,6 +299,9 @@ font-family: 'Lexend Deca', sans-serif;
 font-weight: 400;
 font-size: 16px;
 line-height: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
 cursor: pointer;
 `
 const ContainerRoutineFeito = styled.div`

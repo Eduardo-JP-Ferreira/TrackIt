@@ -115,12 +115,10 @@ font-size: 18px;
         font-weight: 400;
         line-height: 25px;
         padding: 10px;
-        color: #DBDBDB;
         font-family: 'Lexend Deca', sans-serif;
 
         ::placeholder{
         color: #DBDBDB;
-        padding: 10px;
     }
     }
 `
