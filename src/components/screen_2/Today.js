@@ -131,13 +131,32 @@ export default function Today(){
         console.log(arrayToday)
     }
     return(
-        //
+        ////
         <ContainerToday>
             {console.log(data)}
             <NomePagina>
                 <h1 data-test="today">{`${diaSemana}, ${dia}/${mesCorrigido}`}</h1>
             </NomePagina>
+            <Subtitulo>
+                <h1 data-test="today-counter">Nenhum hábito concluído ainda</h1>
+            </Subtitulo>
        
+            <Conteudo>
+                {arrayToday.map((item)=>
+                    <ContainerHoje data-test="today-habit-container">
+                        <Caixa>
+                            <TituloHoje>
+                                <p data-test="today-habit-name">{item.name}</p>
+                            </TituloHoje>
+                            <Sequencia>
+                                <p data-test="today-habit-sequence" >Sequência atual: {item.currentSequence} dias</p>
+                                <p data-test="today-habit-record">Seu recorde: {item.highestSequence} dias</p>
+                            </Sequencia>
+                        </Caixa>
+                        <Check data-test="today-habit-check-btn"><ion-icon name="checkmark-sharp"></ion-icon></Check>
+                    </ContainerHoje>
+                )}
+            </Conteudo>
         </ContainerToday>
     )
 }
@@ -164,5 +183,90 @@ justify-content: space-between;
         line-height: 29px;
         color: #126BA5;
         margin-left: 17px;
+    }
+`
+const Subtitulo = styled.div`
+width: 100%;
+margin-bottom: 11px;
+    h1{
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+        color: #BABABA;;
+        margin-left: 17px;
+    }
+`
+
+const Conteudo = styled.div`
+width: 100%;
+margin-top: 17px;
+display: flex;
+flex-direction: column;
+    p{
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 400;
+        font-size: 17.976px;
+        line-height: 22px;
+        margin-left: 17px;
+        color: #666666;
+    }
+`
+
+const ContainerHoje= styled.div`
+width: 340px;
+height: 91px;
+margin-left: 17px;
+background-color: white;
+margin-bottom: 10px;
+display: flex;
+justify-content: space-between;
+position: relative;
+`
+const Caixa=styled.div`
+
+`
+
+const TituloHoje = styled.div`
+width: 100%;
+height: 25px;
+margin-top: 13px;
+    p{
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 25px;
+        color: #666666;
+    }
+
+`
+const Sequencia = styled.div`
+width: 100%;
+height: 32px;
+margin-top: 7px;
+    p{
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        color: #666666;
+    }
+`
+
+const Check = styled.div`
+width: 69px;
+height: 69px;
+margin-top: 13px;
+margin-right: 13px;
+background-color: #EBEBEB;
+display: flex;
+justify-content: center;
+align-items: center;
+    ion-icon{
+        border-radius: 5px;
+        padding: none;
+        width: 70%;
+        height: 80%;
+        color: white
     }
 `
