@@ -63,16 +63,16 @@ export default function Routine() {
     }
     function cliqueDia(dia){
         console.log(days)
-        if(days.includes(dia)){
+        if(days.includes(Number(dia))){
             console.log("INCLUDES")
-            let indice = days.indexOf(dia)
+            let indice = days.indexOf(Number(dia))
 
             days.splice(indice, 1)
             const novoArray = [...days]
             setDiasClicados(novoArray)
         }
         else{
-            setDiasClicados([...days, dia])
+            setDiasClicados([...days, Number(dia)])
         }
     }
     useEffect(() => {
@@ -96,25 +96,25 @@ export default function Routine() {
                 <FormNome disabled={desabilitar}  data-test="habit-name-input"  type="name" required value={nomeHabito} onChange={e => setNomeHabito(e.target.value)} placeholder="nome do hábito"/>
                 <Dias>
                     <FormDia disabled={desabilitar}  data-test="habit-day" value="7" 
-                        cor={days.includes("7") ? "#CFCFCF" : "white"}
+                        cor={days.includes(7) || days.includes("7") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>D</FormDia>
                     <FormDia disabled={desabilitar} data-test="habit-day" value="1" 
-                        cor={days.includes("1") ? "#CFCFCF" : "white"}
+                        cor={days.includes(1) || days.includes("1") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
                     <FormDia disabled={desabilitar} data-test="habit-day" value="2" 
-                        cor={days.includes("2") ? "#CFCFCF" : "white"}
+                        cor={days.includes(2) || days.includes("2") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>T</FormDia>
                     <FormDia disabled={desabilitar} data-test="habit-day" value="3" 
-                        cor={days.includes("3") ? "#CFCFCF" : "white"}
+                        cor={days.includes(3) || days.includes("3") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>Q</FormDia>
                     <FormDia disabled={desabilitar} data-test="habit-day" value="4" 
-                        cor={days.includes("4") ? "#CFCFCF" : "white"}
+                        cor={days.includes(4) || days.includes("4") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>Q</FormDia>
                     <FormDia disabled={desabilitar} data-test="habit-day" value="5" 
-                        cor={days.includes("5") ? "#CFCFCF" : "white"}
+                        cor={days.includes(5) || days.includes("5") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
                     <FormDia disabled={desabilitar} data-test="habit-day" value="6" 
-                        cor={days.includes("6") ? "#CFCFCF" : "white"}
+                        cor={days.includes(6) || days.includes("6") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
                 </Dias>
                 <Envio >
