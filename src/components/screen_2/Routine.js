@@ -55,7 +55,10 @@ export default function Routine() {
                 requisicao.then(resposta => {
                     console.log(resposta.data)
                     setArrayHabitos(resposta.data)
-                });
+                })
+                requisicao.catch(erro => {
+                    alert(erro.response.data.message)
+                })
             })
             promessa.catch(erro => {
                 alert(erro.response.data.message)
@@ -91,7 +94,10 @@ export default function Routine() {
                 requisicao.then(resposta => {
                     console.log(resposta.data)
                     setArrayHabitos(resposta.data)
-                });
+                })
+                requisicao.catch(erro => {
+                    alert(erro.response.data.message)
+                })
             })
         }
     }
@@ -101,7 +107,10 @@ export default function Routine() {
         requisicao.then(resposta => {
             console.log(resposta.data)
             setArrayHabitos(resposta.data)
-        });
+        })
+        requisicao.catch(erro => {
+            alert(erro.response.data.message)
+        })
     }, []);
    
     return (
