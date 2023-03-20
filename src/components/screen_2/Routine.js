@@ -11,6 +11,7 @@ export default function Routine() {
     const [diasHabito, setDiasHabito] = useState("")
     const [days, setDiasClicados] = useState([])
     const [resposta, setResposta] = useState("")
+    const [desabilitar, setDesabilitar] = useState(false)
 
     const config = {
         headers: {Authorization: `Bearer ${objetoLoginRecebido.token}`}
@@ -29,16 +30,28 @@ export default function Routine() {
     }
     function enviarForm(event){
         event.preventDefault();
-        console.log(config)
-        console.log(bodyPost)
 
-        const promessa = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", bodyPost, config);
-        promessa.then(res => {
-            setResposta(res.data)
-            alert("foi")
-        })
-        promessa.catch(erro => alert(erro.response.data.message))
+        if(days.length>0){
+            setDesabilitar(true)
+            console.log(config)
+            console.log(bodyPost)
 
+            const promessa = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", bodyPost, config);
+            promessa.then(res => {
+                setFormAtivo(false)
+                setResposta(res.data)
+                setDesabilitar(false)
+                alert("foi")
+            })
+            promessa.catch(erro => {
+                alert(erro.response.data.message)
+                setDesabilitar(false)
+            
+            })
+        }
+        else{
+            alert("Selecione ao menos um Dia")
+        }
     }
     function cliqueDia(dia){
         console.log(days)
@@ -55,7 +68,7 @@ export default function Routine() {
         }
     }
     return (
-        <ContainerRoutine>
+        <ContainerRoutine clique={desabilitar}>
             <NomePagina>
                 <h1>Meus hábitos</h1>
                 <BotaoMais data-test="habit-create-btn" onClick={abrirForm}>+</BotaoMais>
@@ -63,31 +76,31 @@ export default function Routine() {
             {formAtivo === true ? 
 
             <Formulario data-test="habit-create-container" onSubmit={enviarForm}>
-                <FormNome data-test="habit-name-input"  type="name" required value={nomeHabito} onChange={e => setNomeHabito(e.target.value)} placeholder="nome do hábito"/>
+                <FormNome disabled={desabilitar}  data-test="habit-name-input"  type="name" required value={nomeHabito} onChange={e => setNomeHabito(e.target.value)} placeholder="nome do hábito"/>
                 <Dias>
-                    <FormDia data-test="habit-day" value="1" 
-                        cor={days.includes("1") ? "#CFCFCF" : "white"}
+                    <FormDia disabled={desabilitar}  data-test="habit-day" value="7" 
+                        cor={days.includes("7") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>D</FormDia>
-                    <FormDia data-test="habit-day" value="2" 
-                        cor={days.includes("2") ? "#CFCFCF" : "white"}
+                    <FormDia disabled={desabilitar} data-test="habit-day" value="1" 
+                        cor={days.includes("1") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
-                    <FormDia data-test="habit-day" value="3" 
-                        cor={days.includes("3") ? "#CFCFCF" : "white"}
+                    <FormDia disabled={desabilitar} data-test="habit-day" value="2" 
+                        cor={days.includes("2") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>T</FormDia>
-                    <FormDia data-test="habit-day" value="4" 
+                    <FormDia disabled={desabilitar} data-test="habit-day" value="3" 
+                        cor={days.includes("3") ? "#CFCFCF" : "white"}
+                        onClick={e => cliqueDia(e.target.value)}>Q</FormDia>
+                    <FormDia disabled={desabilitar} data-test="habit-day" value="4" 
                         cor={days.includes("4") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>Q</FormDia>
-                    <FormDia data-test="habit-day" value="5" 
+                    <FormDia disabled={desabilitar} data-test="habit-day" value="5" 
                         cor={days.includes("5") ? "#CFCFCF" : "white"}
-                        onClick={e => cliqueDia(e.target.value)}>Q</FormDia>
-                    <FormDia data-test="habit-day" value="6" 
+                        onClick={e => cliqueDia(e.target.value)}>S</FormDia>
+                    <FormDia disabled={desabilitar} data-test="habit-day" value="6" 
                         cor={days.includes("6") ? "#CFCFCF" : "white"}
                         onClick={e => cliqueDia(e.target.value)}>S</FormDia>
-                    <FormDia data-test="habit-day" value="7" 
-                        cor={days.includes("7") ? "#CFCFCF" : "white"}
-                        onClick={e => cliqueDia(e.target.value)}>S</FormDia>
                 </Dias>
-                <Envio>
+                <Envio >
                     <p data-test="habit-create-cancel-btn" onClick={fecharForm}>Cancelar</p>
                     <Salvar data-test="habit-create-save-btn" type="submit" >Salvar</Salvar>
                 </Envio>
@@ -109,6 +122,7 @@ height: 100%;
 display: flex;
 flex-direction: column;
 align-items: center;
+pointer-events: ${props => props.clique === true ? "none" : "all"};
 `
 
 const NomePagina = styled.div`
