@@ -18,7 +18,7 @@ export default function ScreenTwoRoutine(){
 const ContainerScreen2 = styled.div`
 background-color: white;
 width: 375px;
-height: 109%;
+max-height: 109px;
 min-height: 667px;
 display: flex;
 flex-direction: column;

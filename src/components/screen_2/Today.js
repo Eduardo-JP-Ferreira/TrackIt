@@ -169,8 +169,14 @@ export default function Today(){
                                 <p data-test="today-habit-name">{item.name}</p>
                             </TituloHoje>
                             <Sequencia>
-                                <p data-test="today-habit-sequence" >Sequência atual: {item.currentSequence} dias</p>
-                                <p data-test="today-habit-record">Seu recorde: {item.highestSequence} dias</p>
+                                <SequenciaAtual feita={item.done}>
+                                    <p >Sequência atual: </p>
+                                    <h1  data-test="today-habit-sequence"> {item.currentSequence} dias</h1>
+                                </SequenciaAtual>
+                                <Recorde feita={item.done} maior={item.highestSequence} atual={item.currentSequence}>
+                                    <p >Seu recorde: </p>
+                                    <h1  data-test="today-habit-record"> {item.highestSequence} dias</h1>
+                                </Recorde>
                             </Sequencia>
                         </Caixa>
                         <Check feito={item.done} onClick={()=> verificaCheck(item.id, item.done)} data-test="today-habit-check-btn"><ion-icon name="checkmark-sharp"></ion-icon></Check>
@@ -270,6 +276,33 @@ margin-top: 7px;
         font-size: 13px;
         line-height: 16px;
         color: #666666;
+    }
+    :first-child p span{
+        color: red;
+    }
+`
+const SequenciaAtual = styled.div`
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    display: flex;
+    
+    h1{
+        color: ${props=> props.feita===true ? "#8FC549" : "#666666"};
+        margin-left: 4px;
+    }
+`
+const Recorde= styled.div`
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    display: flex;
+    
+    h1{
+        color: ${props=> props.feita===true && props.atual >= props.maior ? "#8FC549" : "#666666"};
+        margin-left: 4px;
     }
 `
 
