@@ -6,12 +6,10 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Porcentagem from "../../context/Porcentagem";
 export default function Menu() {
-    // const porcentagem = 30;
 
     const navigate = useNavigate()
     const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
     const {porcentagem, setPorcentagem} = useContext(Porcentagem)
-    // const [porcentagem, setPorcentagem] = useState(0)
     function goHabitos(){
         navigate('/habitos')
     }
@@ -32,7 +30,6 @@ export default function Menu() {
             </Base>
             <Hoje>
             <Porcento>
-                {console.log("por", porcentagem)}
                 <CircularProgressbar value={porcentagem}
                 styles={buildStyles({
                     trailColor: '#52B6FF',

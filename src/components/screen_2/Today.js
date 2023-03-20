@@ -17,8 +17,7 @@ export default function Today(){
     const [habilitaPointer, setHabilitaPointer] = useState(true)
     const [qntTarefa, setQntTarefa] = useState(0)
     const [qntCheck, setQntCheck] = useState(0)
-    const teste = 1
-    let teste2 = 0
+    
     // setPorcentagem(teste/qntTarefa)
     //let testarRecord =1 //Modifiquei este valor e passei como props no lugar do Seu record 
     //                          para verificar que fica cinza quando o Record é > Atual
@@ -27,8 +26,7 @@ export default function Today(){
         headers: {Authorization: `Bearer ${objetoLoginRecebido.token}`}
     }
         
-    console.log("ta",qntTarefa)
-    console.log("ch",teste2)
+    
     useEffect(() => {
   
         console.log("por", porcentagem)
@@ -102,7 +100,7 @@ export default function Today(){
         const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, config)
 
         requisicao.then(resposta => {
-            console.log(resposta.data)
+            
             setArrayToday(resposta.data)
             setQntTarefa(resposta.data.length)
             setPorcentagem(
@@ -125,7 +123,7 @@ export default function Today(){
                 const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, config)
     
                 requisicao.then(resposta => {
-                    console.log(resposta.data)
+                    
                     setArrayToday(resposta.data)
                     setHabilitaPointer(true)
                     setPorcentagem(
@@ -150,11 +148,11 @@ export default function Today(){
             const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`, [],config)
 
             requisicao.then(resposta => {
-                // console.log(resposta.data)
+                
                 const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, config)
     
                 requisicao.then(resposta => {
-                    console.log(resposta.data)
+                    
                     setArrayToday(resposta.data)
                     setHabilitaPointer(true)
                     setPorcentagem(
@@ -179,7 +177,6 @@ export default function Today(){
     return(
         
         <ContainerToday pointer={habilitaPointer}>
-            {console.log(data)}
             <NomePagina>
                 <h1 data-test="today">{`${diaSemana}, ${dia}/${mesCorrigido}`}</h1>
             </NomePagina>

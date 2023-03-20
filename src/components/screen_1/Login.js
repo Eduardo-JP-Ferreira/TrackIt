@@ -17,11 +17,8 @@ export default function Login({
     function executarLogin(event){
         event.preventDefault();
         setHabilitarLogin(true)
-        console.log("Entrar: ",emailLogin, senhaLogin)
-        // alert("olhar console")
         const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", objetoLogin)
         requisicao.then(resposta => {
-            console.log(resposta.data)
             setObjetoLoginRecebido(resposta.data)
             navigate('/hoje')
             setHabilitarLogin(false)

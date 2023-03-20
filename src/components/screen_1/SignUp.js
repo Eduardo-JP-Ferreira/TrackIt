@@ -8,7 +8,7 @@ export default function SignUp({
     emailCadastro, setEmailCadastro, senhaCadastro, setSenhaCadastro,
     nomeCadastro, setNomeCadastro, fotoCadastro, setFotoCadastro}){
     const navigate = useNavigate()
-    // https://images.tcdn.com.br/img/img_prod/680735/camiseta_rick_einstein_3378_2_985b10ac6589665ffc7b74b166ffc2f6.jpg
+
     const objetoCadastro = {email: `${emailCadastro}`, name: `${nomeCadastro}`, image: `${fotoCadastro}`, password: `${senhaCadastro}`}
     const [habilitarCadastro, setHabilitarCadastro] = useState(false)
     
@@ -18,17 +18,13 @@ export default function SignUp({
     function executarCadastro(event){
         event.preventDefault();
         setHabilitarCadastro(true)
-        console.log("Cadastrei", emailCadastro, senhaCadastro, nomeCadastro, fotoCadastro)
-        // alert("Verifica Console")
         const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", objetoCadastro)
         requisicao.then(() => {
             navigate('/')
             setHabilitarCadastro(false)
         } )
         requisicao.catch(resposta => {
-            // console.log("OBJ", objetoCadastro)
             alert(resposta.response.data.message)
-            // console.log(resposta.response.data)
             setHabilitarCadastro(false)
         })
     }

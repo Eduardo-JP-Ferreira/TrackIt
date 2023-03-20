@@ -38,8 +38,6 @@ export default function Routine() {
 
         if(days.length>0){
             setDesabilitar(true)
-            console.log(config)
-            console.log(bodyPost)
 
             const promessa = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", bodyPost, config);
             promessa.then(res => {
@@ -53,7 +51,7 @@ export default function Routine() {
                 const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, config)
 
                 requisicao.then(resposta => {
-                    console.log(resposta.data)
+
                     setArrayHabitos(resposta.data)
                 })
                 requisicao.catch(erro => {
@@ -71,9 +69,7 @@ export default function Routine() {
         }
     }
     function cliqueDia(dia){
-        console.log(days)
         if(days.includes(Number(dia))){
-            console.log("INCLUDES")
             let indice = days.indexOf(Number(dia))
 
             days.splice(indice, 1)
@@ -92,7 +88,6 @@ export default function Routine() {
                 const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, config)
 
                 requisicao.then(resposta => {
-                    console.log(resposta.data)
                     setArrayHabitos(resposta.data)
                 })
                 requisicao.catch(erro => {
@@ -105,7 +100,6 @@ export default function Routine() {
         const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, config)
 
         requisicao.then(resposta => {
-            console.log(resposta.data)
             setArrayHabitos(resposta.data)
         })
         requisicao.catch(erro => {
@@ -171,7 +165,7 @@ export default function Routine() {
             
             : ""}
             <Conteudo>
-                {console.log("a",arrayHabitos)}
+
                 {arrayHabitos.length !== 0 ? 
 
                     arrayHabitos.map((item)=>
