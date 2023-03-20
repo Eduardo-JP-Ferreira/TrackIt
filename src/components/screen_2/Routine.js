@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import UserContext from "../../context/UserContext";
 import { useContext } from "react";
@@ -12,6 +12,7 @@ export default function Routine() {
     const [days, setDiasClicados] = useState([])
     const [resposta, setResposta] = useState("")
     const [desabilitar, setDesabilitar] = useState(false)
+    const [arrayHabitos, setArrayHabitos] = useState([])
 
     const config = {
         headers: {Authorization: `Bearer ${objetoLoginRecebido.token}`}
@@ -67,6 +68,15 @@ export default function Routine() {
             setDiasClicados([...days, dia])
         }
     }
+    useEffect(() => {
+        const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, config)
+
+        requisicao.then(resposta => {
+            console.log(resposta.data)
+            setArrayHabitos(resposta.data)
+        });
+    }, []);
+
     return (
         <ContainerRoutine>
             <NomePagina>
@@ -108,8 +118,38 @@ export default function Routine() {
             
             : ""}
             <Conteudo>
-                <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito
-                     para começar a trackear!</p>
+                {console.log("a",arrayHabitos)}
+                {arrayHabitos.length !== 0 ? 
+
+                    arrayHabitos.map((item)=>
+                        <ContainerRoutineFeito data-test="habit-container">
+                            <TituloHabito>
+                                <p data-test="habit-name">{item.name}</p>
+                            </TituloHabito>
+                            <DiasHabito>
+                                <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="7" 
+                                    cor={item.days.includes(7) ? "#CFCFCF" : "white"}>D</FormDiaHabito>
+                                <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="1" 
+                                    cor={item.days.includes(1) ? "#CFCFCF" : "white"}>S</FormDiaHabito>
+                                <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="2" 
+                                    cor={item.days.includes(2) ? "#CFCFCF" : "white"}>T</FormDiaHabito>
+                                <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="3" 
+                                    cor={item.days.includes(3) ? "#CFCFCF" : "white"}>Q</FormDiaHabito>
+                                <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="4" 
+                                    cor={item.days.includes(4) ? "#CFCFCF" : "white"}>Q</FormDiaHabito>
+                                <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="5" 
+                                    cor={item.days.includes(5) ? "#CFCFCF" : "white"}>S</FormDiaHabito>
+                                <FormDiaHabito disabled={desabilitar} data-test="habit-day" value="6" 
+                                    cor={item.days.includes(6) ? "#CFCFCF" : "white"}>S</FormDiaHabito>
+                            </DiasHabito>
+                        </ContainerRoutineFeito>
+                    )
+                
+                : <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito
+                para começar a trackear!</p>}
+           
+
+                
             </Conteudo>
         </ContainerRoutine>
     )
@@ -189,7 +229,6 @@ padding: 10px;
 
     ::placeholder{
         color: #DBDBDB;
-        padding: 10px;
     }
 `
 
@@ -211,10 +250,7 @@ border: 1px solid #D5D5D5;
 border-radius: 5px;
 color: ${props=> props.cor==="#CFCFCF" ? "white" : "#DBDBDB"};
 cursor: pointer;
-/* ::placeholder{
-        color: #DBDBDB;
-        padding: 2px;
-    } */
+
 `
 
 const Envio = styled.div`
@@ -247,4 +283,46 @@ font-size: 16px;
 line-height: 20px;
 cursor: pointer;
 `
+const ContainerRoutineFeito = styled.div`
+width: 340px;
+height: 91px;
+margin-left: 17px;
+background-color: white;
+margin-bottom: 10px;
+display: flex;
+flex-direction: column;
+`
+const TituloHabito = styled.div`
+width: 100%;
+height: 25px;
+/* margin-left: 15px; */
+margin-top: 13px;
+/* background-color: lightblue; */
+    p{
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 25px;
+        color: #666666;
+    }
 
+`
+const DiasHabito = styled.div`
+display: flex;
+margin-left: 15px;
+margin-top: 10px;
+`
+const FormDiaHabito = styled.option`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 30px;
+height: 30px;
+margin-right: 4px;
+background-color: ${props=> props.cor};
+border: 1px solid #D5D5D5;
+border-radius: 5px;
+color: ${props=> props.cor==="#CFCFCF" ? "white" : "#DBDBDB"};
+cursor: pointer;
+
+`
