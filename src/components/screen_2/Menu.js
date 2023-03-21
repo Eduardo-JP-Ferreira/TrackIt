@@ -28,17 +28,17 @@ export default function Menu() {
                 <h1 data-test="habit-link" onClick={goHabitos}>Hábitos</h1>
                 <h2 data-test="history-link" onClick={goHistorico}>Histórico</h2>
             </Base>
-            <Hoje>
-            <Porcento>
+            <Hoje onClick={goHoje}>
+                <Porcento>
                 <CircularProgressbar value={porcentagem}
                 styles={buildStyles({
                     trailColor: '#52B6FF',
                     pathColor: 'white'
                 })}
                 
-                />;
-            </Porcento>
-                <BotaoHoje data-test="today-link" onClick={goHoje}>Hoje</BotaoHoje>  
+                />
+                </Porcento>
+                <BotaoHoje data-test="today-link" >Hoje</BotaoHoje>  
             </Hoje>
             
         </ContainerMenu>
