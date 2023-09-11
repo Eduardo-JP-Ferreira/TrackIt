@@ -4,9 +4,9 @@ TrackIt is a comprehensive habit tracking application, where the user can add an
 ## Technologies Used
 
 <p>
-<img style='margin: 2px;' src='https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB' alt='React'/>
-<img style='margin: 2px;' src='https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white' alt='Styled-Components'/>
-<img style='margin: 2px;' src='https://img.shields.io/badge/axios-800080?style=for-the-badge&logo=axios&logoColor=white' alt='Axios'/>
+<img src="https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black" alt='React'/>
+<img src="https://img.shields.io/badge/styledcomponents-DB7093.svg?style=for-the-badge&logo=styled-components&logoColor=white"/>
+<img src="https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white"/>
 </p>
 
 ## How to Use
