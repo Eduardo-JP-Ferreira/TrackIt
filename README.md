@@ -1,4 +1,4 @@
-## About
+## Description
 TrackIt is a comprehensive habit tracking application, where the user can add and monitor their habits. The user can add as many habits as they want, selecting the days of the week on which they should perform them. TrackIt can also be used as an automatic to-do list.
 
 ## Technologies Used
@@ -9,7 +9,7 @@ TrackIt is a comprehensive habit tracking application, where the user can add an
 <img src="https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white"/>
 </p>
 
-## How to Use
+## Instalation
 
 Clone the Repository: Clone this repository to your local machine.
 ```
