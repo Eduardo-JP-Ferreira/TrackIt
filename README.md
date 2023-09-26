@@ -1,5 +1,9 @@
 ## Description
 TrackIt is a comprehensive habit tracking application, where the user can add and monitor their habits. The user can add as many habits as they want, selecting the days of the week on which they should perform them. TrackIt can also be used as an automatic to-do list.
+<p>
+<img width=250px src="./public/assets/trackit.png"/>
+<img width=250px src="./public/assets/habits.png"/>
+</p>
 
 ## Technologies Used
 
