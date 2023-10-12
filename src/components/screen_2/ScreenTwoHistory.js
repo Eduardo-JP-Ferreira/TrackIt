@@ -2,7 +2,7 @@ import History from "./History"
 import Topo from "./Topo"
 import Menu from "./Menu"
 import styled from "styled-components"
-
+import React from "react"
 export default function ScreenTwoHistory(){
     
   return(
@@ -10,15 +10,13 @@ export default function ScreenTwoHistory(){
       <Topo/>
       <History/>
       <Menu/>
-    </ContainerScreen2>
-    
-      
+    </ContainerScreen2> 
   )
 }
 const ContainerScreen2 = styled.div`
 background-color: #f2f2f2;
 width: 375px;
-max-height: 109%;
+max-height: 667px;
 min-height: 667px;
 display: flex;
 flex-direction: column;

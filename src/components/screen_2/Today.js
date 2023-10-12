@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import UserContext from "../../context/UserContext";
 import Porcentagem from "../../context/Porcentagem";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 
@@ -223,6 +223,9 @@ display: flex;
 flex-direction: column;
 align-items: center;
 pointer-events: ${props => props.pointer === true ? "all" : "none"};
+overflow-y: scroll;
+overflow-x: hidden;
+margin-bottom: 70px;
 `
 const NomePagina = styled.div`
 width: 100%;

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import UserContext from "../../context/UserContext";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -46,18 +46,16 @@ export default function Menu() {
 }
 
 const ContainerMenu = styled.div`
-
 width: 375px;
 height: 101px;
 display: flex;
 justify-content: center;
-position: fixed;
+position: absolute;
 bottom: 0;
 z-index: 2;
 `
 const Base = styled.div`
 background-color: #FFFFFF;
-/* background-color: white; */
 width: 375px;
 height: 70px;
 display: flex;
@@ -85,6 +83,7 @@ width: 91px;
 height: 91px;
 z-index: 3;
 position: relative;
+cursor: pointer;
 `
 const Porcento = styled.div`
 width: 80px;
@@ -100,7 +99,7 @@ background-color: #52B6FF;
 border-radius: 50%;
 width: 91px;
 height: 91px;
-
+cursor: pointer;
 font-family: 'Lexend Deca', sans-serif;
 font-weight: 400;
 font-size: 18px;

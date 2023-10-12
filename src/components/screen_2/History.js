@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import { ThreeDots  } from  'react-loader-spinner'
+import React from "react"
+
 export default function History() {
 
-    
     return (
         <ContainerHistory>
             <NomePagina>
@@ -22,6 +22,9 @@ width: 100%;
 height: 100%;
 display: flex;
 flex-direction: column;
+overflow-y: scroll;
+overflow-x: hidden;
+margin-bottom: 70px;
 `
 
 const NomePagina = styled.div`

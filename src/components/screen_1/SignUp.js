@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { useState } from "react"
+import React, { useState } from "react"
 import { ThreeDots  } from  'react-loader-spinner'
 
 export default function SignUp({

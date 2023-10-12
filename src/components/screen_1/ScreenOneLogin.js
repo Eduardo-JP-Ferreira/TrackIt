@@ -1,7 +1,5 @@
 import Login from "./Login"
-// import { useNavigate } from "react-router-dom"
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import React from "react";
 
 export default function ScreenOneLogin({
     emailLogin, setEmailLogin, senhaLogin, setSenhaLogin,
@@ -9,11 +7,9 @@ export default function ScreenOneLogin({
 }){
     
     return(
-        
         <Login emailLogin={emailLogin} setEmailLogin={setEmailLogin}
         senhaLogin={senhaLogin} setSenhaLogin={setSenhaLogin}
         objetoLoginRecebido={objetoLoginRecebido} setObjetoLoginRecebido={setObjetoLoginRecebido}
-        />
-        
+        />        
     )
 }

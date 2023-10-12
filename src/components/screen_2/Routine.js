@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 import styled from "styled-components"
 import UserContext from "../../context/UserContext";
 import { useContext } from "react";
@@ -210,7 +210,9 @@ height: 100%;
 display: flex;
 flex-direction: column;
 align-items: center;
-
+overflow-y: scroll;
+overflow-x: hidden;
+margin-bottom: 70px;
 `
 
 const NomePagina = styled.div`
