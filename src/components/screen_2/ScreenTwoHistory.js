@@ -3,6 +3,7 @@ import Topo from "./Topo"
 import Menu from "./Menu"
 import styled from "styled-components"
 import React from "react"
+
 export default function ScreenTwoHistory(){
     
   return(

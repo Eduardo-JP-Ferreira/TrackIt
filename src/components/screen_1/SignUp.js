@@ -7,6 +7,7 @@ import { ThreeDots  } from  'react-loader-spinner'
 export default function SignUp({
     emailCadastro, setEmailCadastro, senhaCadastro, setSenhaCadastro,
     nomeCadastro, setNomeCadastro, fotoCadastro, setFotoCadastro}){
+
     const navigate = useNavigate()
 
     const objetoCadastro = {email: `${emailCadastro}`, name: `${nomeCadastro}`, image: `${fotoCadastro}`, password: `${senhaCadastro}`}
@@ -28,6 +29,7 @@ export default function SignUp({
             setHabilitarCadastro(false)
         })
     }
+
     return(
         <ContainerTela clique={habilitarCadastro}>
             <Logo>
@@ -75,7 +77,6 @@ margin-bottom: 40px;
         width: 180px;
         height: 178px;
     }
-
 `
 const Formulario = styled.form`
 width: 305px;
@@ -84,7 +85,6 @@ flex-direction: column;
 align-items: flex-start;
 margin: 20px 0;
 font-size: 18px;
-
     button {
         align-self: center;
         width: 303px;
@@ -112,7 +112,6 @@ font-size: 18px;
         line-height: 25px;
         padding: 10px;
         font-family: 'Lexend Deca', sans-serif;
-
         ::placeholder{
         color: #DBDBDB;
     }

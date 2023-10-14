@@ -5,14 +5,11 @@ import UserContext from "../../context/UserContext";
 import React, { useContext, useState } from "react";
 import { ThreeDots  } from  'react-loader-spinner'
 
-export default function Login({
-    emailLogin, setEmailLogin, senhaLogin, setSenhaLogin,
-}){
+export default function Login({emailLogin, setEmailLogin, senhaLogin, setSenhaLogin}){
     const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
     const navigate = useNavigate();
     const objetoLogin = {email: `${emailLogin}`, password: `${senhaLogin}`}
     const [habilitarLogin, setHabilitarLogin] = useState(false)
-
 
     function executarLogin(event){
         event.preventDefault();
@@ -67,7 +64,6 @@ flex-direction: column;
 align-items: center;
 font-family: 'Lexend Deca', sans-serif;
 pointer-events: ${props => props.clique === true ? "none" : "all"};
-
 `
 const Logo = styled.div`
 margin-top: 68px;
@@ -76,7 +72,6 @@ margin-bottom: 40px;
         width: 180px;
         height: 178px;
     }
-
 `
 const Formulario = styled.form`
 width: 305px;
@@ -85,7 +80,6 @@ flex-direction: column;
 align-items: flex-start;
 margin: 20px 0;
 font-size: 18px;
-
     button {
         align-self: center;
         width: 303px;
@@ -101,8 +95,7 @@ font-size: 18px;
         cursor: pointer;
         display: flex;
         justify-content: center;
-        align-items: center;
-       
+        align-items: center;       
     }
     input {
         width: 303px;
@@ -114,7 +107,6 @@ font-size: 18px;
         font-weight: 400;
         line-height: 25px;
         padding: 10px;
-        /* color: #DBDBDB; */
         font-family: 'Lexend Deca', sans-serif;
         :disabled{
             background-color: #F2F2F2;
@@ -123,7 +115,6 @@ font-size: 18px;
         color: #DBDBDB;
     }
     }
-
 `
 const Cadastro = styled.div`
 color: #52B6FF;
@@ -132,10 +123,8 @@ font-size: 14px;
 font-weight: 400;
 line-height: 18px;
 font-family: 'Lexend Deca', sans-serif;
-/* pointer-events: none; */
     p{
         pointer-events: none;
-        /* pointer-events: ${props => props.clique === true ? "all" : "none"}; */
         :hover{
             cursor: pointer;
         }

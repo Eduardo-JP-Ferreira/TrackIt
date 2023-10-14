@@ -11,7 +11,6 @@ export default function History() {
             <Conteudo>
                 <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
             </Conteudo>
-
         </ContainerHistory>
     )
 }

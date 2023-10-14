@@ -44,10 +44,7 @@ export default function Routine() {
                 setFormAtivo(false)
                 setResposta(res.data)
                 setDesabilitar(false)
-                
-                // navigate('/habitos')
-                // const resetaArray = [...arrayHabitos]
-                // setArrayHabitos([...arrayHabitos, res.data])
+
                 const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, config)
 
                 requisicao.then(resposta => {
@@ -84,6 +81,7 @@ export default function Routine() {
         if (window.confirm("Delete the item?")) {
             
             const promessa = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config)
+
             promessa.then(res =>{
                 const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, config)
 
@@ -161,13 +159,10 @@ export default function Routine() {
                 /> 
                 : "Salvar"}</Salvar>
                 </Envio>
-            </Formulario>
-            
+            </Formulario>            
             : ""}
             <Conteudo>
-
                 {arrayHabitos.length !== 0 ? 
-
                     arrayHabitos.map((item)=>
                         <ContainerRoutineFeito data-test="habit-container">
                             <TituloHabito>
@@ -191,13 +186,9 @@ export default function Routine() {
                                     cor={item.days.includes(6) || item.days.includes('6') ? "#CFCFCF" : "white"}>S</FormDiaHabito>
                             </DiasHabito>
                         </ContainerRoutineFeito>
-                    )
-                
+                    )                
                 : <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito
-                para começar a trackear!</p>}
-           
-
-                
+                para começar a trackear!</p>}                
             </Conteudo>
         </ContainerRoutine>
     )

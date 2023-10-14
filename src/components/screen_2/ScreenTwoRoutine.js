@@ -10,9 +10,7 @@ export default function ScreenTwoRoutine(){
         <Topo/>
         <Routine/>
         <Menu/>
-      </ContainerScreen2>
-      
-        
+      </ContainerScreen2>        
     )
 }
 const ContainerScreen2 = styled.div`

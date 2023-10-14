@@ -8,8 +8,6 @@ import ScreenTwoRoutine from "./components/screen_2/ScreenTwoRoutine"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
 
-
-
 import UserContext from "./context/UserContext";
 import Porcentagem from "./context/Porcentagem";
 
@@ -24,12 +22,10 @@ function App() {
   const [porcentagem, setPorcentagem] = useState(0)
 
   return (
-
     <BrowserRouter>
     <UserContext.Provider value={{objetoLoginRecebido, setObjetoLoginRecebido}}>
     <Porcentagem.Provider value={{porcentagem, setPorcentagem}}>
-			<Routes>
-        
+			<Routes>        
         <Route path="/" element={ <ScreenOneLogin 
         emailLogin={emailLogin} setEmailLogin={setEmailLogin}
         senhaLogin={senhaLogin} setSenhaLogin={setSenhaLogin}

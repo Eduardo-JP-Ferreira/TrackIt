@@ -3,10 +3,7 @@ import UserContext from "../../context/UserContext";
 import React, { useContext } from "react";
 
 export default function Topo() {
-
     const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
-
-   
 
     return (
         <ContainerTopo data-test="header">
@@ -30,7 +27,6 @@ align-items: center;
 position: fixed;
 top: 0;
 z-index: 2;
-
 `
 
 const Logo = styled.div`

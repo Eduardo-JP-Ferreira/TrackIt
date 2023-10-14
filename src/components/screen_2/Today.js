@@ -6,7 +6,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 
 export default function Today(){   
-    const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
+    const {objetoLoginRecebido} = useContext(UserContext)
     const {porcentagem, setPorcentagem} = useContext(Porcentagem)
     const [arrayToday, setArrayToday] = useState([])
     const [data, setData] = useState(dayjs().day().toString())
@@ -16,17 +16,11 @@ export default function Today(){
     const [mesCorrigido, setMesCorrigido] = useState("")
     const [habilitaPointer, setHabilitaPointer] = useState(true)
     const [qntTarefa, setQntTarefa] = useState(0)
-    const [qntCheck, setQntCheck] = useState(0)
-    
-    // setPorcentagem(teste/qntTarefa)
-    //let testarRecord =1 //Modifiquei este valor e passei como props no lugar do Seu record 
-    //                          para verificar que fica cinza quando o Record é > Atual
-    
+
     const config = {
         headers: {Authorization: `Bearer ${objetoLoginRecebido.token}`}
-    }
-        
-    
+    }        
+
     useEffect(() => {
   
         console.log("por", porcentagem)
@@ -99,8 +93,7 @@ export default function Today(){
 
         const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, config)
 
-        requisicao.then(resposta => {
-            
+        requisicao.then(resposta => {            
             setArrayToday(resposta.data)
             setQntTarefa(resposta.data.length)
             setPorcentagem(
@@ -119,7 +112,6 @@ export default function Today(){
             const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`, [],config)
 
             requisicao.then(resposta => {
-                // console.log(resposta.data)
                 const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, config)
     
                 requisicao.then(resposta => {
@@ -129,14 +121,12 @@ export default function Today(){
                     setPorcentagem(
                         (resposta.data.filter((item) => item.done).length /
                             resposta.data.length) * 100
-                    );
-                    
+                    );                    
                 })
                 requisicao.catch(erro => {
                     alert(erro.response.data.message)
                     setHabilitaPointer(true)
-                })
-                
+                })                
             })
             requisicao.catch(erro => {
                 alert(erro.response.data.message)
@@ -174,8 +164,7 @@ export default function Today(){
         }
     }
 
-    return(
-        
+    return(        
         <ContainerToday pointer={habilitaPointer}>
             <NomePagina>
                 <h1 data-test="today">{`${diaSemana}, ${dia}/${mesCorrigido}`}</h1>
@@ -185,12 +174,10 @@ export default function Today(){
                 <h2 data-test="today-counter">{porcentagem.toFixed()}% dos hábitos concluídos</h2>
             :   <h1 data-test="today-counter">Nenhum hábito concluído ainda</h1>
             }
-            </Subtitulo>
-       
+            </Subtitulo>       
             <Conteudo>
                 {arrayToday.map((item)=>
-                    <ContainerHoje data-test="today-habit-container">
-                       
+                    <ContainerHoje data-test="today-habit-container">                       
                         <Caixa>
                             <TituloHoje>
                                 <p data-test="today-habit-name">{item.name}</p>

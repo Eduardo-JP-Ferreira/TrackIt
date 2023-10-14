@@ -5,11 +5,11 @@ import { useNavigate } from "react-router";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Porcentagem from "../../context/Porcentagem";
-export default function Menu() {
 
+export default function Menu() {
     const navigate = useNavigate()
-    const {objetoLoginRecebido, setObjetoLoginRecebido} = useContext(UserContext)
-    const {porcentagem, setPorcentagem} = useContext(Porcentagem)
+    const { porcentagem } = useContext(Porcentagem)
+
     function goHabitos(){
         navigate('/habitos')
     }
@@ -21,26 +21,24 @@ export default function Menu() {
     function goHoje(){
         navigate('/hoje')
     }
+
     return (
-        <ContainerMenu data-test="menu">
-            
+        <ContainerMenu data-test="menu">            
             <Base>
                 <h1 data-test="habit-link" onClick={goHabitos}>Hábitos</h1>
                 <h2 data-test="history-link" onClick={goHistorico}>Histórico</h2>
             </Base>
             <Hoje onClick={goHoje}>
                 <Porcento>
-                <CircularProgressbar value={porcentagem}
-                styles={buildStyles({
-                    trailColor: '#52B6FF',
-                    pathColor: 'white'
-                })}
-                
+                    <CircularProgressbar value={porcentagem}
+                    styles={buildStyles({
+                        trailColor: '#52B6FF',
+                        pathColor: 'white'
+                    })}                
                 />
                 </Porcento>
                 <BotaoHoje data-test="today-link" >Hoje</BotaoHoje>  
-            </Hoje>
-            
+            </Hoje>            
         </ContainerMenu>
     )
 }
